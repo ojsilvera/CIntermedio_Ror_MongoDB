@@ -6,7 +6,9 @@ ruby '2.7.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.4'
 # Use postgresql as the database for Active Record
-gem 'pg', '>= 0.18', '< 2.0'
+# gem 'pg', '>= 0.18', '< 2.0'
+# Use mongoDB as the database for Action Document Model
+gem 'mongoid', github: 'mongodb/mongoid',branch: 'master'
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets
@@ -77,7 +79,7 @@ gem 'simple_form'
 
 # Annotates Rails/ActiveRecord Models, routes, fixtures, and others based on the database schema.
 # ref: https://rubygems.org/gems/annotate
-gem 'annotate', '~> 3.1', '>= 3.1.1'
+# gem 'annotate', '~> 3.1', '>= 3.1.1'
 
 # Haml (HTML Abstraction Markup Language)
 # https://rubygems.org/gems/haml
