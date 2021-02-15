@@ -12,12 +12,21 @@
 #  owner_id    :bigint           not null
 #  code        :string
 #
-class Task < ApplicationRecord
+class Task
+  include Mongoid::Document
+  include Mongoid::Timestamps
+
+  # Definiendo los campos del modelo bajo la premisa nonSql
+  field :name, type: String
+  field :description, type: String
+  field :due_date, type: Date
+  field :code, type: String
+
   # * Relaciones
   belongs_to :category
   belongs_to :owner, class_name: 'User'
   has_many :participating_users, class_name: 'Participant', dependent: :delete_all
-  has_many :participants, through: :participating_users, source: :user
+  # has_many :participants, through: :participating_users, source: :user
   has_many :notes
 
   # * Validaciones
@@ -35,6 +44,10 @@ class Task < ApplicationRecord
   # * Permitir insercion de campos de un modelo en el formulario de otro a traves de la gema cocoon
   accepts_nested_attributes_for :participating_users, allow_destroy: true
 
+  def participants
+    participating_users.includes(:user).map(&:user)
+  end
+
   def due_date_validate
     return if due_date.blank?
     return if due_date > Date.today
@@ -47,6 +60,7 @@ class Task < ApplicationRecord
   end
 
   def send_mail
+    return
     (participants + [owner]).each do |user|
       ParticipantMailer.with(user: user, task: self).new_task_email.deliver!
     end
