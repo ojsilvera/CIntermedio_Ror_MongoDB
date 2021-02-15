@@ -1,0 +1,23 @@
+---
+es:
+  activerecord:
+    models:
+      category:
+        one: Categoría
+        other: Categorías
+      tasks:
+        one: Tarea
+        other: Tareas
+  categories:
+    edit_category: Editar Categoría
+    form:
+      name: Nombre
+    new_category: Neva Categoría
+  common:
+    back: Atrás
+    edit: Editar
+    show: Mostrar
+  hello: Hello world
+  task:
+    errors:
+      invalid_due_date: Fecha de terminación debe estar en el futuro
