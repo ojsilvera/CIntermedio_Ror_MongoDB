@@ -1,14 +1,12 @@
-# == Schema Information
-#
-# Table name: categories
-#
-#  id          :bigint           not null, primary key
-#  name        :string
-#  description :text
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#
-class Category < ApplicationRecord
+class Category
+  include Mongoid::Document
+  include Mongoid::Timestamps
+
+  # Definiendo los campos del modelo bajo la premisa nonSql
+  field :name, type: String
+  field :description, type: String
+
+  # Relacion task >- category
   has_many :tasks
 
   # valida que el campo este lleno
