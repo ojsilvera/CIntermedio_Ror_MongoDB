@@ -28,18 +28,39 @@ RSpec.describe Task, type: :model do
   it { is_expected.to validate_uniqueness_of(:name) }
 
   describe '#save' do
-    let(:participants_count) { 4 }
-    subject(:task) { build(:task_with_participants, participants_count: participants_count) }
-
-    it 'is persisted' do
-      expect(task.save).to eq true
+    context 'with params from scracth' do
+      # * uso las factories para crear los elementos requeridos por la tarea
+      let(:owner) { create :user }
+      let(:category) { create :category }
+      let(:participant1) { build :participant, :responsible }
+      let(:participant2) { build :participant, :follower }
+      # * el sujeto crea una nueva tarea
+      subject do
+        described_class.new(
+          name: 'Test task',
+          description: 'Test Body',
+          due_date: Date.today + 5.days,
+          category: category,
+          owner: owner,
+          participating_users: [participant1, participant2]
+        )
+      end
+      # * espero que la tarea sea valida desde la ejecucion del sujeto
+      it { is_expected.to be_valid }
     end
 
-    context 'after save' do
-      before(:each) { task.save }
-      it 'has all associated participants' do
-        expect(task.participating_users.count).to eq participants_count
-        expect(Participant.count).to eq participants_count
+    context 'factorBot with params' do
+      let(:participants_count) { 4 }
+      subject(:task) { build(:task_with_participants, participants_count: participants_count) }
+      it 'is persisted' do
+        expect(task.save).to eq true
+      end
+      context 'after save' do
+        before(:each) { task.save }
+        it 'has all associated participants' do
+          expect(task.participating_users.count).to eq participants_count
+          expect(Participant.count).to eq participants_count
+        end
       end
     end
   end
