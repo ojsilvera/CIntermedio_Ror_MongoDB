@@ -7,7 +7,7 @@ class Ability
 
     # * si el usuario es follower del post solo puede verlo
     can :read, Task do |t|
-      participants = t.participant_ids
+      participants = t.participants
       user = user.id
       participants.map { |id_participant| user == id_participant }
     end
