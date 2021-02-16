@@ -38,9 +38,9 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'binding_of_caller', '~> 1.0'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'factory_bot_rails', '~> 6.1'
   # Preview email in the default browser instead of sending it.
   # https://github.com/ryanb/letter_opener
+  gem 'factory_bot_rails', '~> 6.1'
   gem 'letter_opener'
   gem 'rspec-rails', '~> 4.0', '>= 4.0.2'
   gem 'ruby_jard', '~> 0.3.1'
