@@ -16,7 +16,7 @@ class Task
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  # Definiendo los campos del modelo bajo la premisa nonSql
+  # * Definiendo los campos del modelo bajo la premisa nonSql
   field :name, type: String
   field :description, type: String
   field :due_date, type: Date

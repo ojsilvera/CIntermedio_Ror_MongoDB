@@ -1,11 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
 %w[juan andrea leon andres natalia camilo rusbel johan].each do |name|
   User.create email: "#{name}@platzi.com", password: '123456'
 end
@@ -17,6 +9,7 @@ end
 puts 'Categories has been created'
 
 owner = User.find_by(email: 'johan@platzi.com')
+
 [
   ['conceptualización', 'Bienvenida ', ['juan:1', 'leon:2', 'andrea:random']],
   ['conceptualización', '¿Qué es ruby on rails y por qué usarlo?', ['juan:1', 'leon:2', 'andrea:random']],
@@ -48,16 +41,19 @@ owner = User.find_by(email: 'johan@platzi.com')
   ['conceptualización', 'Desplegando a Heroku', ['juan:1', 'leon:2', 'andrea:random']],
   ['conceptualización', 'Conclusiones del curso', ['juan:1', 'leon:2', 'andrea:random']]
 ].each do |category, description, participant_set|
-        participants = participant_set.map do |participant|
-          user_name, raw_role = participant.split(':')
-          role = raw_role == 'random' ? [1, 2].sample : raw_role
-          Participant.new(user: User.find_by(email: "#{user_name}@platzi.com"), role: role.to_i)
-        end
-        Task.create!(category: Category.find_by(name: category),
-                     name: "Tarea ##{Task.count + 1}",
-                     description: description,
-                     due_date: Date.today + 15.days,
-                     owner: owner,
-                     participating_users: participants)
+  participants = participant_set.map do |participant|
+    user_name, raw_role = participant.split(':')
+    role = raw_role == 'random' ? [1, 2].sample : raw_role
+    Participant.new(
+      user: User.find_by(email: "#{user_name}@platzi.com"),
+      role: role.to_i
+    )
   end
+  Task.create!(category: Category.find_by(name: category),
+               name: "Tarea ##{Task.count + 1}",
+               description: description,
+               due_date: Date.today + 15.days,
+               owner: owner,
+               participating_users: participants)
+end
 puts 'Tasks has been created'

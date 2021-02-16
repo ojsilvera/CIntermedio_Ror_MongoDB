@@ -8,7 +8,7 @@ gem 'rails', '~> 6.0.3', '>= 6.0.3.4'
 # Use postgresql as the database for Active Record
 # gem 'pg', '>= 0.18', '< 2.0'
 # Use mongoDB as the database for Action Document Model
-gem 'mongoid', github: 'mongodb/mongoid',branch: 'master'
+gem 'mongoid', '~> 7.2'
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets
