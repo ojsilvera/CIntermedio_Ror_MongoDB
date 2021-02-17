@@ -34,8 +34,9 @@ RSpec.describe Task, type: :model do
       let(:category) { create :category }
       let(:participant1) { build :participant, :responsible }
       let(:participant2) { build :participant, :follower }
+
       # * el sujeto crea una nueva tarea
-      subject do
+      subject(:task) do
         described_class.new(
           name: 'Test task',
           description: 'Test Body',
@@ -47,6 +48,22 @@ RSpec.describe Task, type: :model do
       end
       # * espero que la tarea sea valida desde la ejecucion del sujeto
       it { is_expected.to be_valid }
+
+      # * contexto para despues de grabar el registro en la base de datos
+      context 'after save' do
+        before(:each) { task.save }
+        it { is_expected.to be_persisted }
+        it 'has a computed code' do
+          expect(task.code).to be_present
+        end
+      end
+      # * contexto para fecha ubicada en el pasado
+      context 'we due_date in the past' do
+        subject { task.tap { |t| t.due_date = Date.today - 1.day } }
+        # * prueba no valida, no debe pasar el test
+        it { is_expected.to_not be_valid }
+      end
+
     end
 
     context 'factorBot with params' do
