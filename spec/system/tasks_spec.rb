@@ -27,10 +27,10 @@ RSpec.describe "Tasks", type: :system do
       xpath = '//*[@id="new_task"]/div[1]/div[6]/div[1]'
 
       within(:xpath, xpath) do
-        select participant.id.to_s, from: 'User'
-        select '1', from: 'Role'
+        select participant.email, from: 'Usuario'
+        select 'responsible', from: 'Rol'
       end
-      click_botton 'Crear Task'
+      click_button 'Crear Task'
 
       expect(page).to have_content('Task was successfully created.')
     end
