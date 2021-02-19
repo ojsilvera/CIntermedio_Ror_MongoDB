@@ -23,7 +23,10 @@ gem 'jbuilder', '~> 2.7'
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+# https://rubygems.org/gems/bootstrap
 gem 'bootstrap', '~> 4.6'
+# Bootstrap JavaScript depends on jQuery. If you're using Rails 5.1+
+gem 'jquery-rails', '~> 4.4'
 # Flexible authentication solution for Rails with Warden
 # https://rubygems.org/gems/devise
 gem 'devise', '~> 4.7', '>= 4.7.3'
