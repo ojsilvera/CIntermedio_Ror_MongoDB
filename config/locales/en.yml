@@ -14,9 +14,14 @@ en:
       name: Name
     new_category: Neva Categoría
   common:
+    are_you_sure: Are you sure
     back: Atrás
+    destroy: Destroy
     edit: Editar
     show: Mostrar
+  errors:
+    messages:
+      not_saved: Not saved
   hello: Hello world
   task:
     errors:

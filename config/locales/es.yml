@@ -14,9 +14,14 @@ es:
       name: Nombre
     new_category: Neva Categoría
   common:
+    are_you_sure: ¿Está seguro de ejecutar esta acción?
     back: Atrás
+    destroy: Eliminar
     edit: Editar
     show: Mostrar
+  errors:
+    messages:
+      not_saved: No guardado
   hello: Hello world
   task:
     errors:
