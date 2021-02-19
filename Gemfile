@@ -27,6 +27,10 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootstrap', '~> 4.6'
 # Bootstrap JavaScript depends on jQuery. If you're using Rails 5.1+
 gem 'jquery-rails', '~> 4.4'
+# Font-Awesome SASS gem for use in Ruby projects
+gem 'font-awesome-sass', '~> 5.15', '>= 5.15.1'
+# Just font
+gem 'font-roboto-rails', '~> 0.0.3'
 # Flexible authentication solution for Rails with Warden
 # https://rubygems.org/gems/devise
 gem 'devise', '~> 4.7', '>= 4.7.3'
