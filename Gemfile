@@ -29,6 +29,8 @@ gem 'bootstrap', '~> 4.6'
 gem 'jquery-rails', '~> 4.4'
 # Font-Awesome SASS gem for use in Ruby projects
 gem 'font-awesome-sass', '~> 5.15', '>= 5.15.1'
+# Asynchronous processing library for Ruby
+gem 'sucker_punch', '~> 3.0', '>= 3.0.1'
 # Just font
 gem 'font-roboto-rails', '~> 0.0.3'
 # Flexible authentication solution for Rails with Warden
