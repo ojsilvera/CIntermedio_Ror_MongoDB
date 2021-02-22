@@ -11,20 +11,34 @@
 //     }))
 // module.exports = environment
 
+// const { environment } = require('@rails/webpacker')
+// const webpack = require('webpack')
+
+// module.exports = environment
+
+// environment.plugins.prepend(
+//     'Provide',
+//     new webpack.ProvidePlugin({
+//         $: 'jquery',
+//         jQuery: 'jquery',
+//         jquery: 'jquery',
+//         'window.jQuery': 'jquery',
+//         "window.$": "jquery",
+//         Popper: ['popper.js', 'default'],
+//         Rails: ['@rails/ujs']
+//     })
+// )
+
 const { environment } = require('@rails/webpacker')
+
 const webpack = require('webpack')
 
-module.exports = environment
-
-environment.plugins.prepend(
-    'Provide',
+environment.plugins.prepend('Provide',
     new webpack.ProvidePlugin({
         $: 'jquery',
         jQuery: 'jquery',
-        jquery: 'jquery',
         'window.jQuery': 'jquery',
-        "window.$": "jquery",
-        Popper: ['popper.js', 'default'],
-        Rails: ['@rails/ujs']
-    })
-)
+        Popper: ['popper.js', 'default']
+    }))
+
+module.exports = environment
