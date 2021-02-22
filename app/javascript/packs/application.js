@@ -9,7 +9,7 @@ require("@rails/activestorage").start()
 require("channels")
 
 import 'bootstrap'
-// import './src/stylesheets/application.sass'
+import '../src/stylesheets/application'
 
 import 'cocoon'
 
