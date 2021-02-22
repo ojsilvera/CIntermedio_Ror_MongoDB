@@ -15,6 +15,7 @@
         "jquery-ujs": "^1.2.2",
         "popper.js": "^1.16.1",
         "rails-ujs": "^5.2.4-5",
+        "selectize": "^0.12.6",
         "turbolinks": "^5.2.0"
     },
     "version": "0.1.0",
