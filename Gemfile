@@ -36,6 +36,8 @@ gem 'font-roboto-rails', '~> 0.0.3'
 # Flexible authentication solution for Rails with Warden
 # https://rubygems.org/gems/devise
 gem 'devise', '~> 4.7', '>= 4.7.3'
+# AASM is a continuation of the acts-as-state-machine rails plugin, built for plain Ruby objects.
+gem 'aasm', '~> 5.1', '>= 5.1.1'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
