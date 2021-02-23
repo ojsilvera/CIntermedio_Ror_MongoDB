@@ -48,6 +48,6 @@ class Task
   def send_mail
     # return unless Rails.env.development
     return
-    Tasks::SendEmail.new.call self
+    Tasks::SendEmailJob.perfom_async id.to_s
   end
 end
