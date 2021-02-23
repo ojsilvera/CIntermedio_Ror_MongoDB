@@ -1,12 +1,15 @@
 class Task
   include Mongoid::Document
   include Mongoid::Timestamps
+  include AASM
 
   # * Definiendo los campos del modelo bajo la premisa nonSql
   field :name, type: String
   field :description, type: String
   field :due_date, type: Date
   field :code, type: String
+  field :status, type: String
+  field :transitions, type: Array, default: []
 
   # * Relaciones
   belongs_to :category
@@ -29,6 +32,34 @@ class Task
 
   # * Permitir insercion de campos de un modelo en el formulario de otro a traves de la gema cocoon
   accepts_nested_attributes_for :participating_users, allow_destroy: true
+
+
+  # * Maquina de estados gema AASM
+  aasm column: :status do
+    state :pending, initial: true
+    state :in_process, :finished
+
+    after_all_transitions :audit_status_change
+
+    event :start do
+      transitions from: :pending, to: :in_process
+    end
+
+    event :finish do
+      transitions from: :in_process, to: :finished
+    end
+  end
+
+  # * metodo correspondiente al proceso de auditado de la maquina de estados
+  # * permite persistir las salidas del proceso de auditoria
+  def audit_status_change
+    set transitions: transitions.push(
+      from_state: aasm.from_state,
+      to_state: aasm.to_state,
+      current_event: aasm.current_event,
+      timestamp: Time.zone.now
+    )
+  end
 
   def participants
     participating_users.includes(:user).map(&:user)
